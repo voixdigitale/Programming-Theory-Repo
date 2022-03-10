@@ -10,3 +10,4 @@ public class MainManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 }
+    
