@@ -28,14 +28,14 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
         RaycastHit hit = CastRay();
         if (hit.collider != null && hit.collider.gameObject.CompareTag("floor"))
         {
-            selectedObject.GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, 1f);
+            SetMaterialColor(selectedObject, 1f, 1f, 1f, 1f);
             selectedObject.transform.position = new Vector3(hit.point.x, 0.7f, hit.point.z);
         }
         else
         {
             Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-            selectedObject.GetComponent<Renderer>().material.color = new Color(1f, 0f, 0f, 0.4f);
+            SetMaterialColor(selectedObject, 1f, 0f, 0f, 0.4f);
             selectedObject.transform.position = new Vector3(worldPosition.x, 0.7f, worldPosition.z);
         }
     }
@@ -49,7 +49,15 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
     {
         canvasGroup.blocksRaycasts = true;
     }
+    
+    //ABSTRACTION
+    private void SetMaterialColor(GameObject target, float r, float g, float b, float a)
+    {
+        target.GetComponent<Renderer>().material.color = new Color(r, g, b, a);
+    }
 
+
+    //ABSTRACTION
     private RaycastHit CastRay()
     {
         Vector3 screenPosFar = new Vector3(
