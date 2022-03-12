@@ -8,4 +8,4 @@ This project shows the four pillars of object-oriented programming:
 **Inheritance**: PottedPlant, Bush and Tree inherit properties from the Plant class  
 **Polymorphism**: Each Plant needs to "ProduceOxygen" with an abstract method  
 
-[](./Assets/Oxygen.png)
+[Screenshot](/Assets/Images/Oxygen.png)
