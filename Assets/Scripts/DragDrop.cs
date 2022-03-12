@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public GameObject Tree;
     private CanvasGroup canvasGroup;
     private GameObject selectedObject;
+    private bool rightPlacement;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
         {
             SetMaterialColor(selectedObject, 1f, 1f, 1f, 1f);
             selectedObject.transform.position = new Vector3(hit.point.x, 0.7f, hit.point.z);
+            rightPlacement = true;
         }
         else
         {
@@ -37,17 +39,17 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler, IBegin
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
             SetMaterialColor(selectedObject, 1f, 0f, 0f, 0.4f);
             selectedObject.transform.position = new Vector3(worldPosition.x, 0.7f, worldPosition.z);
+            rightPlacement = false;
         }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("Down");
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+        if (!rightPlacement) {
+            Destroy(selectedObject);
+            MainManager.i.OxygenRate -= selectedObject.GetComponent<Plant>().OxygenProduction;
+        }
     }
     
     //ABSTRACTION

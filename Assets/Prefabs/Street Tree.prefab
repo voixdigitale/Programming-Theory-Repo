@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4351810435969816543}
   - component: {fileID: 1981667129279210261}
   - component: {fileID: 883231509688090515}
+  - component: {fileID: 5019611491747122893}
   m_Layer: 0
   m_Name: Street Tree
   m_TagString: Untagged
@@ -95,3 +96,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0335012, y: 0.035227578, z: 0.12041089}
   m_Center: {x: -0.0005478263, y: -0.00028552176, z: 0.06024317}
+--- !u!114 &5019611491747122893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36230767880094400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4757c777c9dbd84ebfdf7e6b15fb2b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _oxygenProduction: 27

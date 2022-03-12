@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : MonoBehaviour
-{ 
-    private float _oxygenProduction = 0.27f;
-    private float _CO2Absorption;
-    private int productionTick;
-    
+public abstract class Plant : MonoBehaviour
+{
+    [SerializeField] protected float _oxygenProduction;
+    protected float _CO2Absorption;
+    protected int productionTick;
+
     //ENCAPSULATION
+    [SerializeField]
     public float OxygenProduction
     {
         get
@@ -52,7 +53,13 @@ public class Plant : MonoBehaviour
         }
     }
 
-    void Start()
+    public virtual void Start()
+    {
+        MainManager.i.OxygenRate += OxygenProduction;
+        SubscribeToTickSystem();
+    }
+
+    protected void SubscribeToTickSystem()
     {
         productionTick = 0;
 
@@ -61,20 +68,14 @@ public class Plant : MonoBehaviour
             if (productionTick < 3)
             {
                 productionTick++;
-            } else
+            }
+            else
             {
-                Vector3 startPos = transform.position;
-                startPos.x += 0.5f;
-                startPos.y += transform.lossyScale.y * 1.5f;
-                TextPopup.Create(startPos, _oxygenProduction.ToString("F2"));
-                productionTick = 0;
+                if (this) ProduceOxygen();
             }
         };
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void ProduceOxygen();
+
 }
