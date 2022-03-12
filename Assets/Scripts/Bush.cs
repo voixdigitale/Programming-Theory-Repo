@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bush : Plant
 {
+    //POLYMORPHISM
     public override void ProduceOxygen()
     {
         Vector3 startPos = transform.position;

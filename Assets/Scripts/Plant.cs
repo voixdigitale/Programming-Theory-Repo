@@ -76,6 +76,7 @@ public abstract class Plant : MonoBehaviour
         };
     }
 
+    //POLYMORPHISM
     public abstract void ProduceOxygen();
 
 }

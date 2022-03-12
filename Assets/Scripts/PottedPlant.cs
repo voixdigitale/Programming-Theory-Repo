@@ -6,6 +6,7 @@ public class PottedPlant : Plant
 {
     public override void ProduceOxygen()
     {
+        //POLYMORPHISM
         Vector3 startPos = transform.position;
         startPos.x += 0.5f;
         startPos.y += transform.lossyScale.y * 1.5f;
